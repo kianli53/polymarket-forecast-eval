@@ -5,10 +5,10 @@ Post-cutoff forecasts. Score one language model on 20 to 30 resolved Polymarket,
 Can GPT-5.6 Luna, with no web access, forecast real-world events that resolved after its training cutoff as accurately as Polymarket’s own prices, and does it beat trivial baselines? More broadly, does an LLM’s forecasting skill on post-cutoff events approach that of a prediction market?
 
 ## Methodology
-**MODEL**
+**MODEL:**
 GPT-5.6 Luna, cutoff Feb 16, 2026 (https://developers.openai.com/api/docs/models/gpt-5.6-luna). Same prompt, no search or tools, and a new chat for every question.
 
-**PROMPT**
+**PROMPT:**
 You are a forecaster. Today's date is {ref_time date}.
 
 Question: {question}
@@ -19,17 +19,17 @@ Estimate the probability that this question resolves YES. Use only what you alre
 Reply on a SINGLE line in exactly this format, with nothing else:
 PROBABILITY: <a number between 0 and 1> | REASON: <one sentence>
 
-**DATA**
+**DATA:**
 Resolved Yes/No Polymarket markets that closed at least 14 days after the cutoff, filtered by a volume threshold and clean resolution, then sampled randomly with a fixed seed. Text descriptions were checked for text that revealed the outcome. Forecasted using the market's last price 7 days before close.
 
-**METRIC**
+**METRIC:**
 The Brier score was used, a metric used to measure the accuracy of probabilistic predictions.
 Brier score: $mean((forecast - outcome)^2)$, where a score of 0 means a perfect forecast and a score of 1 means the worst possible forecast.
 
-**BASELINES AND CONTROLS**
-(a) the market price, the strong baseline
-(b) always 50%
-(c) always the base rate of Yes in my sample
+**BASELINES AND CONTROLS**\
+(a) the market price, the strong baseline\
+(b) always 50%\
+(c) always the base rate of Yes in my sample\
 Controls show whether the model has any skill at all, while the market shows how the model compares to the crowd.
 
 ## First Experiment
@@ -59,7 +59,7 @@ On this sample, GPT-5.6 Luna showed no clear skill beyond a constant guess and w
 + Devise graphs and plots for the results and data.
 + Current limitations are the small sample, one prompt, one forecast point, volume-based selection of markets, and the possibility that descriptions or question wordings hint at outcomes.
 
-**What I'd want to work on in the future**
+**What I'd want to work on in the future:**
 World models are still a relatively new concept to me, but I'm interested in learning more, especially methods in evaluating them as I've done through this small project. In the future however, I'd like to leverage my knowledge to work on building said models instead of simply testing them.
 
 AI tools were used to help write data collection and scoring scripts, which were reviewed and ran personally. Choosing the question, filters, and controls were personal decisions.
